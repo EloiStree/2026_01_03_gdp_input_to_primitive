@@ -1,10 +1,4 @@
-
-
-
-
 class_name ListenToDevicesAxisAndButtons extends Node
-
-
 
 signal on_new_device_tracked(device_index: int, apparition_index: int, device_name: String)
 signal on_new_supposed_xbox_tracked(device_index: int, apparition_index: int, device_name: String)
@@ -15,6 +9,10 @@ signal on_any_button_event_to_device_reference(device:DeviceTracked)
 signal on_any_event_to_device_and_manager_reference(device: DeviceTracked, manager: ListenToDevicesAxisAndButtons)
 
 
+@export var is_xbox_if_has_in_name: Array[String] = ["xbox","steam deck", "x-box", "x box", "xbox360", "x-box360", "x box360", "xbox one", "x-box one", "x box one" ]
+@export var use_print_debug: bool = false
+
+
 # on_new_device_tracked.emit( )
 # on_new_supposed_xbox_tracked.emit()
 # on_axis_changed.emit()
@@ -22,8 +20,6 @@ signal on_any_event_to_device_and_manager_reference(device: DeviceTracked, manag
 # on_any_event_to_device_reference.emit()
 # on_any_event_to_device_and_manager_reference.emit()
 
-@export var is_xbox_if_has_in_name: Array[String] = ["xbox","steam deck", "x-box", "x box", "xbox360", "x-box360", "x box360", "xbox one", "x-box one", "x box one" ]
-@export var use_print_debug: bool = false
 
 var list_of_all_devices: Array[DeviceTracked] = []
 
@@ -82,13 +78,9 @@ func is_device_index_is_in_list_of_all_devices(device_index: int) -> bool:
 	return list_of_all_devices[device_index] != null
 
 func _add_tracked_device(device_index: int) -> void:
-
-	
 	var bool_is_device_setup = device_index >= 0 and device_index < list_of_all_devices.size() and list_of_all_devices[device_index] != null
 	if bool_is_device_setup:
 		return
-
-
 	var device_name := Input.get_joy_name(device_index)
 	var device_apparition_index = get_exact_name_count_in_track_devices(device_name,true, true)
 	if use_print_debug:
@@ -101,8 +93,6 @@ func _add_tracked_device(device_index: int) -> void:
 	new_device.joystick_name = device_name
 	new_device.axis_list = []
 	new_device.button_list = []
-
-
 
 
 	# Resize the list to accommodate the new device index if necessary

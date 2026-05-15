@@ -1,5 +1,5 @@
 class_name InputListenToMapFloat01
-extends Node3D
+extends Node
 
 signal on_float_value_updated(value: float)
 signal on_float_value_changed(value: float)
@@ -8,7 +8,6 @@ signal on_float_value_changed(value: float)
 
 @export_group("Debug")
 @export var last_value_fetched: float = 0.0
-@export var last_value_is_in_range: bool = false
 
 func _ready() -> void:
 	check_and_notify_value()	

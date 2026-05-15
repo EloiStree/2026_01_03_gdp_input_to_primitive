@@ -12,11 +12,7 @@ signal on_key_on_off_with_label(key_code: int, label_name: String, value_is_down
 var _key_states := {}
 var keys_id_to_label_name: Dictionary = {}
 
-
 @export var dictionary_key_id_to_label_name_to_load: Dictionary[int,String] = {}
-
-
-
 @export var default_key_to_label_to_load: Array[KeyboardToolbox.IntegerIdToName] = []
 
 func _ready() -> void:
@@ -40,14 +36,12 @@ func _input(event):
 
 		# Detect first time the key is pressed
 		if is_down and not _key_states[key_code]:
-			emit_signal("on_first_time_key_on", key_code)
+			on_first_time_key_on.emit(key_code)
 
-		# Emit signal only if the state actually changed
 		if _key_states[key_code] != is_down:
 			_key_states[key_code] = is_down
-			emit_signal("on_key_on_off", key_code, is_down)
-			emit_signal("on_key_on_off_with_label", key_code, get_label_of_key_id(key_code), is_down)
-
+			on_key_on_off.emit( key_code, is_down)
+			on_key_on_off_with_label.emit( key_code, get_label_of_key_id(key_code), is_down)
 
 func is_key_down(key_code: int) -> bool:
 	return _key_states.get(key_code, false)

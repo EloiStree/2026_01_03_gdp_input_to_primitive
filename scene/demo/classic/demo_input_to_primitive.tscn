@@ -8,6 +8,8 @@
 [ext_resource type="PackedScene" uid="uid://bystu5yy86e34" path="res://addons/2026_01_03_gdp_input_to_primitive/scene/element/archived/before_2026_04_27/node_2d_xbox_text_debug.tscn" id="6_0vjv6"]
 [ext_resource type="PackedScene" uid="uid://dwdtasu4ghnjw" path="res://addons/2026_01_03_gdp_input_to_primitive/scene/element/archived/before_2026_04_27/node_e2d_listen_to_devices_axis_and_buttons.tscn" id="7_vtdhu"]
 
+[sub_resource type="GDScript" id="GDScript_povcf"]
+
 [node name="DemoInputToPrimitive" type="Control" unique_id=1124651793]
 layout_mode = 3
 anchors_preset = 15
@@ -31,6 +33,7 @@ custom_minimum_size = Vector2(50, 100)
 layout_mode = 2
 
 [node name="Node2dDebugInput" parent="VBoxContainer" unique_id=1375779504 instance=ExtResource("2_shftu")]
+visible = false
 custom_minimum_size = Vector2(50, 100)
 layout_mode = 2
 
@@ -39,13 +42,17 @@ custom_minimum_size = Vector2(50, 100)
 layout_mode = 2
 
 [node name="NodeKeyboardTextDebug" parent="VBoxContainer" unique_id=1410429519 instance=ExtResource("4_v3whh")]
+visible = false
 custom_minimum_size = Vector2(50, 100)
 layout_mode = 2
+default_key_to_label_to_load = Array[SubResource("GDScript_povcf")]([])
 
 [node name="NodeNesTextDebug" parent="VBoxContainer" unique_id=1494518023 instance=ExtResource("5_dm5uf")]
+visible = false
 custom_minimum_size = Vector2(50, 100)
 layout_mode = 2
 
 [node name="NodeXboxTextDebug" parent="VBoxContainer" unique_id=1455376397 instance=ExtResource("6_0vjv6")]
+visible = false
 custom_minimum_size = Vector2(50, 100)
 layout_mode = 2

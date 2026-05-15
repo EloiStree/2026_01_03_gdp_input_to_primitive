@@ -5,7 +5,7 @@ extends InputAbstractOnOffEmit
 signal on_key_changed(value:KeyLabel, is_on:bool)
 signal on_key_changed_as_string(value:String, is_on:bool)
 
-@export_group("Sleep Code")
+@export_group("Unfinish Code")
 @export var key_label_to_look_for: KeyLabel
 
 @export_group("Ctrl Shift Alt")

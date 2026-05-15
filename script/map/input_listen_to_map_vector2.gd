@@ -1,5 +1,5 @@
 class_name InputListenToMapVector2
-extends InputAbstractOnOffEmit
+extends Node
 
 signal on_float_value_updated(value: Vector2)
 signal on_float_value_changed(value: Vector2)
@@ -12,7 +12,6 @@ signal on_float_value_changed(value: Vector2)
 
 @export_group("Debug")
 @export var last_value_fetched: Vector2 = Vector2.ZERO
-@export var last_value_is_in_range: bool = false
 
 @export var last_right_value: float = 0.0
 @export var last_left_value: float = 0.0

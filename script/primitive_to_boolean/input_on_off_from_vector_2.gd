@@ -11,7 +11,7 @@ signal on_up_arrow_changed(is_pressed: bool)
 signal on_down_arrow_changed(is_pressed: bool)
 
 
-@export var radius_threshold: float = 0.5
+@export var radius_threshold: float = 0.35
 
 
 @export_group("Debug")
@@ -30,8 +30,8 @@ func push_in_vector2(value: Vector2	) -> void:
 
 	var is_left = value.x < -radius_threshold
 	var is_right = value.x > radius_threshold	
-	var is_up = value.y < -radius_threshold
-	var is_down = value.y > radius_threshold
+	var is_up = value.y > radius_threshold
+	var is_down = value.y < -radius_threshold
 	var one_changed=is_left != last_arrow_left or is_right != last_arrow_right or is_up != last_arrow_up or is_down != last_arrow_down
 
 	if is_left != last_arrow_left:

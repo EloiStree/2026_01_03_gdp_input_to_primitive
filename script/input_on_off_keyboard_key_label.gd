@@ -5,7 +5,7 @@ extends InputAbstractOnOffEmit
 signal on_event_key_full_text(text:String, is_on:bool)
 signal on_event_key_word(text:String, is_on:bool)
 
-@export_group("Sleep Code")
+@export_group("Unfinish Code")
 @export var key_label_to_look_for: String = "Shift+F1"
 @export var use_print_debug: bool = true
 @export var last_input_found: String 

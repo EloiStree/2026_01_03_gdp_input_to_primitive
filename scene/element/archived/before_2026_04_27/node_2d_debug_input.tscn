@@ -6,8 +6,10 @@
 [ext_resource type="PackedScene" uid="uid://b3s8kjhiv4c6c" path="res://addons/2026_01_03_gdp_input_to_primitive/scene/element/archived/before_2026_04_27/node_2d_char_text_debug.tscn" id="4_wvlqp"]
 [ext_resource type="PackedScene" uid="uid://b0fbpro0orjwl" path="res://addons/2026_01_03_gdp_input_to_primitive/scene/element/archived/before_2026_04_27/node_2d_debug_joystick_list.tscn" id="5_mkbsp"]
 
+[sub_resource type="GDScript" id="GDScript_povcf"]
 
 [node name="Node2dDebugInput" type="Control" unique_id=1375779504]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -20,6 +22,7 @@ layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 0.208
+default_key_to_label_to_load = Array[SubResource("GDScript_povcf")]([])
 
 [node name="NodeXboxTextDebug" parent="." unique_id=2090331614 instance=ExtResource("3_mkbsp")]
 layout_mode = 1

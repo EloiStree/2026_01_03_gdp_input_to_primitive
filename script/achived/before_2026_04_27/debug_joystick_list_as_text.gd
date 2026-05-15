@@ -33,8 +33,6 @@ func get_button_states(device_id: int) -> Dictionary:
 
 
 func _input(event: InputEvent) -> void:
-
-
 	if event is InputEventMouseMotion or event is InputEventMouseButton:
 		# Ignore mouse events
 		print ("Mouse Event: %s" % event.as_text())
@@ -60,19 +58,12 @@ func _input(event: InputEvent) -> void:
 
 func _process(_delta: float) -> void:
 	var text := "Joystick List:\n"
-
 	var joypads := Input.get_connected_joypads()
 	for i in range(joypads.size()):
 		var device_id := joypads[i]
 		var name := Input.get_joy_name(device_id)
-
 		var axis_count: int = get_axis_count(device_id)
 		var button_count: int = get_button_count(device_id)
-
-
-
-
-
 		text += "Joystick %d: %s | Axis Count: %d | Button Count: %d\n" % [
 			i + 1,
 			name,

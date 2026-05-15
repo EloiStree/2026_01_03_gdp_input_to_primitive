@@ -6,6 +6,12 @@
 [ext_resource type="Script" uid="uid://b6d0lxvq0uju0" path="res://addons/2026_01_03_gdp_input_to_primitive/script/input_on_off_keyboard_key_label.gd" id="4_v4rm3"]
 [ext_resource type="Script" uid="uid://dbx6thcax6vo1" path="res://addons/2026_01_03_gdp_input_to_primitive/script/input_on_off_keyboard_key_label_by_enum.gd" id="5_ge74j"]
 [ext_resource type="Script" uid="uid://7f57e4spy0hy" path="res://addons/2026_01_03_gdp_input_to_primitive/script/input_on_off_keyboard_ctrl_shift_alt.gd" id="6_hv6r6"]
+[ext_resource type="Script" uid="uid://duy0s16oy2bhk" path="res://addons/2026_01_03_gdp_input_to_primitive/script/map/input_listen_to_map_button.gd" id="7_hull0"]
+[ext_resource type="Script" uid="uid://c27viodpv8yoa" path="res://addons/2026_01_03_gdp_input_to_primitive/script/map/input_listen_to_map_float_01.gd" id="8_5jr7s"]
+[ext_resource type="Script" uid="uid://0r1c8be8llni" path="res://addons/2026_01_03_gdp_input_to_primitive/script/map/input_listen_to_map_float_11.gd" id="9_ib63b"]
+[ext_resource type="Script" uid="uid://cbtav4ho5qarq" path="res://addons/2026_01_03_gdp_input_to_primitive/script/primitive_to_boolean/input_on_off_from_float.gd" id="10_omud2"]
+[ext_resource type="Script" uid="uid://b3lbd88xej6qj" path="res://addons/2026_01_03_gdp_input_to_primitive/script/map/input_listen_to_map_vector2.gd" id="11_hxu48"]
+[ext_resource type="Script" uid="uid://64krvhjfms6x" path="res://addons/2026_01_03_gdp_input_to_primitive/script/primitive_to_boolean/input_on_off_from_vector_2.gd" id="12_0i0lk"]
 
 [node name="Demo" type="Node3D" unique_id=932091873]
 
@@ -21,30 +27,55 @@ metadata/_custom_type_script = "uid://3d6kwndfwv20"
 
 [node name="InputOnOffMouse" type="Node" parent="." unique_id=1040574640]
 script = ExtResource("3_eq210")
-mouse_event_to_listen = 1
+mouse_event_to_listen = 3
 use_print_debug = false
 metadata/_custom_type_script = "uid://buabu81k2m1m5"
 
 [node name="InputOnOffKeyboardKeyLabel" type="Node" parent="." unique_id=626234532]
 script = ExtResource("4_v4rm3")
+use_print_debug = false
 
 [node name="InputOnOffKeyboardKeyLabelByEnum" type="Node" parent="." unique_id=379813150]
 script = ExtResource("5_ge74j")
+key_label_to_look_for = 1
+use_print_debug = false
 metadata/_custom_type_script = "uid://dbx6thcax6vo1"
 
 [node name="InputOnOffKeyboardCtrlShiftAlt" type="Node" parent="." unique_id=1493661807]
 script = ExtResource("6_hv6r6")
+use_print_debug = false
 metadata/_custom_type_script = "uid://7f57e4spy0hy"
 
+[node name="InputMap" type="Node" parent="." unique_id=1309982587]
+
+[node name="InputMapButton" type="Node" parent="InputMap" unique_id=1813072120]
+script = ExtResource("7_hull0")
+input_map_named = "motor_left_front"
+
+[node name="InputMapFloat" type="Node" parent="InputMap" unique_id=1775675364]
+script = ExtResource("8_5jr7s")
+input_map_named = "motor_left_front"
+
+[node name="InputMapAxis" type="Node" parent="InputMap" unique_id=719878430]
+script = ExtResource("9_ib63b")
+input_map_negative = "motor_left_back"
+input_map_positive = "motor_left_front"
+
+[node name="Float On Off" type="Node" parent="InputMap/InputMapAxis" unique_id=1008418902]
+script = ExtResource("10_omud2")
+
+[node name="InputMapVertex" type="Node" parent="InputMap" unique_id=588965507]
+script = ExtResource("11_hxu48")
+input_map_negative_horizontal = "motor_left_back"
+input_map_positive_horizontal = "motor_left_front"
+input_map_negative_vertical = "motor_right_back"
+input_map_positive_vertical = "motor_right_front"
+
+[node name="Arrow Event" type="Node" parent="InputMap/InputMapVertex" unique_id=152769551]
+script = ExtResource("12_0i0lk")
+radius_threshold = 0.3
+
 [node name="ToDo" type="Node" parent="." unique_id=1109345189]
-
-[node name="InputMapButton" type="Node" parent="ToDo" unique_id=1813072120]
-
-[node name="InputMapFLoat" type="Node" parent="ToDo" unique_id=1775675364]
-
-[node name="InputMapAxis" type="Node" parent="ToDo" unique_id=719878430]
-
-[node name="InputMapVertex" type="Node" parent="ToDo" unique_id=588965507]
 
 [node name="InputXrABXY" type="Node" parent="ToDo" unique_id=8905986]
 
@@ -53,3 +84,6 @@ metadata/_custom_type_script = "uid://7f57e4spy0hy"
 [node name="InputXrGrip" type="Node" parent="ToDo" unique_id=513397932]
 
 [node name="InputXrJoystick" type="Node" parent="ToDo" unique_id=333780080]
+
+[connection signal="on_float_value_updated" from="InputMap/InputMapAxis" to="InputMap/InputMapAxis/Float On Off" method="push_in"]
+[connection signal="on_float_value_updated" from="InputMap/InputMapVertex" to="InputMap/InputMapVertex/Arrow Event" method="push_in_vector2"]

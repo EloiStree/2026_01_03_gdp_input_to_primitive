@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://dx8dqqoicsdss" path="res://addons/2026_01_03_gdp_input_to_primitive/script/achived/before_2026_04_27/debug_keyboard_to_text_key_id.gd" id="2_tcg6f"]
 [ext_resource type="Script" uid="uid://dflrj2fbg2jkq" path="res://addons/2026_01_03_gdp_input_to_primitive/script/achived/before_2026_04_27/debug_keyboard_to_text_key_id_with_label.gd" id="3_ort26"]
 
-[sub_resource type="GDScript" id="GDScript_7436r"]
+[sub_resource type="GDScript" id="GDScript_xi7hn"]
 
 [node name="NodeKeyboardTextDebug" type="Control" unique_id=1410429519]
 layout_mode = 3
@@ -16,7 +16,7 @@ dictionary_key_id_to_label_name_to_load = Dictionary[int, String]({
 32: "space",
 4194306: "tab"
 })
-default_key_to_label_to_load = Array[SubResource("GDScript_7436r")]([null, null, null, null, null])
+default_key_to_label_to_load = Array[SubResource("GDScript_xi7hn")]([null, null, null, null, null])
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1513563272]
 layout_mode = 1

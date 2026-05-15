@@ -1,5 +1,5 @@
 class_name InputListenToMapFloat11
-extends InputAbstractOnOffEmit
+extends Node
 
 signal on_float_value_updated(value: float)
 signal on_float_value_changed(value: float)
@@ -10,7 +10,6 @@ signal on_float_value_changed(value: float)
 
 @export_group("Debug")
 @export var last_value_fetched: float = 0.0
-@export var last_value_is_in_range: bool = false
 
 
 func _ready() -> void:
