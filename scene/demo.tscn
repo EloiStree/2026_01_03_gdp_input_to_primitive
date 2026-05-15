@@ -35,3 +35,21 @@ metadata/_custom_type_script = "uid://dbx6thcax6vo1"
 [node name="InputOnOffKeyboardCtrlShiftAlt" type="Node" parent="." unique_id=1493661807]
 script = ExtResource("6_hv6r6")
 metadata/_custom_type_script = "uid://7f57e4spy0hy"
+
+[node name="ToDo" type="Node" parent="." unique_id=1109345189]
+
+[node name="InputMapButton" type="Node" parent="ToDo" unique_id=1813072120]
+
+[node name="InputMapFLoat" type="Node" parent="ToDo" unique_id=1775675364]
+
+[node name="InputMapAxis" type="Node" parent="ToDo" unique_id=719878430]
+
+[node name="InputMapVertex" type="Node" parent="ToDo" unique_id=588965507]
+
+[node name="InputXrABXY" type="Node" parent="ToDo" unique_id=8905986]
+
+[node name="InputXrTrigger" type="Node" parent="ToDo" unique_id=2066610230]
+
+[node name="InputXrGrip" type="Node" parent="ToDo" unique_id=513397932]
+
+[node name="InputXrJoystick" type="Node" parent="ToDo" unique_id=333780080]
