@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://cwcbvtfa0yrfc"]
+
+[ext_resource type="Script" uid="uid://kj647thywf50" path="res://addons/2026_01_03_gdp_input_to_primitive/script/input_on_off_keyboard_unicode_string.gd" id="1_y6fyf"]
+[ext_resource type="Script" uid="uid://3d6kwndfwv20" path="res://addons/2026_01_03_gdp_input_to_primitive/script/input_on_off_keyboard_unicode_integer.gd" id="2_ksx3b"]
+[ext_resource type="Script" uid="uid://buabu81k2m1m5" path="res://addons/2026_01_03_gdp_input_to_primitive/script/input_on_off_mouse.gd" id="3_eq210"]
+[ext_resource type="Script" uid="uid://b6d0lxvq0uju0" path="res://addons/2026_01_03_gdp_input_to_primitive/script/input_on_off_keyboard_key_label.gd" id="4_v4rm3"]
+[ext_resource type="Script" uid="uid://dbx6thcax6vo1" path="res://addons/2026_01_03_gdp_input_to_primitive/script/input_on_off_keyboard_key_label_by_enum.gd" id="5_ge74j"]
+[ext_resource type="Script" uid="uid://7f57e4spy0hy" path="res://addons/2026_01_03_gdp_input_to_primitive/script/input_on_off_keyboard_ctrl_shift_alt.gd" id="6_hv6r6"]
+
+[node name="Demo" type="Node3D" unique_id=932091873]
+
+[node name="InputOnOffKeyboardUnicodeString" type="Node" parent="." unique_id=1394172764]
+script = ExtResource("1_y6fyf")
+use_print_debug = false
+metadata/_custom_type_script = "uid://kj647thywf50"
+
+[node name="InputOnOffKeyboardUnicodeInteger" type="Node" parent="." unique_id=31944424]
+script = ExtResource("2_ksx3b")
+use_print_debug = false
+metadata/_custom_type_script = "uid://3d6kwndfwv20"
+
+[node name="InputOnOffMouse" type="Node" parent="." unique_id=1040574640]
+script = ExtResource("3_eq210")
+mouse_event_to_listen = 1
+use_print_debug = false
+metadata/_custom_type_script = "uid://buabu81k2m1m5"
+
+[node name="InputOnOffKeyboardKeyLabel" type="Node" parent="." unique_id=626234532]
+script = ExtResource("4_v4rm3")
+
+[node name="InputOnOffKeyboardKeyLabelByEnum" type="Node" parent="." unique_id=379813150]
+script = ExtResource("5_ge74j")
+metadata/_custom_type_script = "uid://dbx6thcax6vo1"
+
+[node name="InputOnOffKeyboardCtrlShiftAlt" type="Node" parent="." unique_id=1493661807]
+script = ExtResource("6_hv6r6")
+metadata/_custom_type_script = "uid://7f57e4spy0hy"

@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://cwcbvtfa0yrfc"]
+
+[ext_resource type="Script" uid="uid://kj647thywf50" path="res://addons/2026_01_03_gdp_input_to_primitive/script/input_on_off_keyboard_unicode_string.gd" id="1_y6fyf"]
+[ext_resource type="Script" uid="uid://3d6kwndfwv20" path="res://addons/2026_01_03_gdp_input_to_primitive/script/input_on_off_keyboard_unicode_integer.gd" id="2_ksx3b"]
+
+[node name="Demo" type="Node3D" unique_id=932091873]
+
+[node name="InputOnOffKeyboardUnicodeString" type="Node" parent="." unique_id=1394172764]
+script = ExtResource("1_y6fyf")
+unicode_to_listen_to = "a"
+use_print_debug = null
+last_input_found = null
+current_state = null
+metadata/_custom_type_script = "uid://kj647thywf50"
+
+[node name="InputOnOffKeyboardUnicodeInteger" type="Node" parent="." unique_id=31944424]
+script = ExtResource("2_ksx3b")
+metadata/_custom_type_script = "uid://3d6kwndfwv20"
