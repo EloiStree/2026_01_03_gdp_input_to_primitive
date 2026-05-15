@@ -1,0 +1,93 @@
+[gd_scene format=3 uid="uid://dcbq3n4rm5rwb"]
+
+[ext_resource type="Script" uid="uid://da08rwrogl47o" path="res://addons/2026_01_03_gdp_input_to_primitive/script/xr/input_xr_static_singleton.gd" id="1_ojuhf"]
+[ext_resource type="Script" uid="uid://cy1pwe330l23o" path="res://addons/2026_01_03_gdp_input_to_primitive/script/xr/input_xr_static_singleton_demo.gd" id="2_0klx2"]
+[ext_resource type="Script" uid="uid://i0gqnyf46v2u" path="res://addons/2026_01_03_gdp_input_to_primitive/script/xr/input_xr_launch_open_xr.gd" id="3_n622u"]
+[ext_resource type="Script" uid="uid://c4k4de6u4kllo" path="res://addons/2026_01_03_gdp_input_to_primitive/script/xr/input_xr_is_hand_tracked.gd" id="4_105wl"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_a0tk4"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_noarx"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r3fl7"]
+albedo_color = Color(0.6638783, 0.01085713, 4.813075e-08, 1)
+
+[node name="Node3D" type="Node3D" unique_id=733472122]
+
+[node name="Node" type="Node" parent="." unique_id=1848168285]
+
+[node name="InputXrStaticSingleton" type="Node" parent="Node" unique_id=116313178 node_paths=PackedStringArray("local_origin", "local_head", "local_left_controller", "local_right_controller", "local_camera_3d", "local_left_hand", "local_right_hand")]
+script = ExtResource("1_ojuhf")
+local_origin = NodePath("../../XROrigin3D")
+local_head = NodePath("../../XROrigin3D/XRController3DHead")
+local_left_controller = NodePath("../../XROrigin3D/XRController3DLeft")
+local_right_controller = NodePath("../../XROrigin3D/XRController3DRight")
+local_camera_3d = NodePath("../../XROrigin3D/XRCamera3D")
+local_left_hand = NodePath("../../XROrigin3D/XRController3DLeft")
+local_right_hand = NodePath("../../XROrigin3D/XRController3DRight")
+metadata/_custom_type_script = "uid://da08rwrogl47o"
+
+[node name="Demo" type="Node" parent="Node" unique_id=2024756665 node_paths=PackedStringArray("debug_label")]
+script = ExtResource("2_0klx2")
+debug_label = NodePath("../../Label3D")
+
+[node name="XROrigin3D" type="XROrigin3D" parent="." unique_id=1248702568]
+
+[node name="InputXRLaunchOpenXR" type="Node3D" parent="XROrigin3D" unique_id=1023348414]
+script = ExtResource("3_n622u")
+metadata/_custom_type_script = "uid://i0gqnyf46v2u"
+
+[node name="XRController3DHead" type="XRController3D" parent="XROrigin3D" unique_id=494094903]
+tracker = &"head"
+
+[node name="XRCamera3D" type="XRCamera3D" parent="XROrigin3D" unique_id=1559762919]
+
+[node name="XRController3DLeft" type="XRController3D" parent="XROrigin3D" unique_id=2063705537]
+tracker = &"left_hand"
+show_when_tracked = true
+
+[node name="MeshInstanceDebug" type="MeshInstance3D" parent="XROrigin3D/XRController3DLeft" unique_id=268138025]
+transform = Transform3D(0.03, 0, 0, 0, 0.03, 0, 0, 0, 0.03, 0, 0, 0)
+mesh = SubResource("BoxMesh_a0tk4")
+
+[node name="XRController3DRight" type="XRController3D" parent="XROrigin3D" unique_id=723948611]
+tracker = &"right_hand"
+show_when_tracked = true
+
+[node name="MeshInstanceDebug" type="MeshInstance3D" parent="XROrigin3D/XRController3DRight" unique_id=505519623]
+transform = Transform3D(0.03, 0, 0, 0, 0.03, 0, 0, 0, 0.03, 0, 0, 0)
+mesh = SubResource("BoxMesh_a0tk4")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="XROrigin3D" unique_id=1349928602]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.4601908)
+mesh = SubResource("BoxMesh_noarx")
+
+[node name="XRNode3D Hand Left" type="XRNode3D" parent="XROrigin3D" unique_id=1717076190]
+tracker = &"/user/hand_tracker/left"
+show_when_tracked = true
+
+[node name="MeshInstanceDebug" type="MeshInstance3D" parent="XROrigin3D/XRNode3D Hand Left" unique_id=1140426228]
+transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, 0, 0, 0)
+mesh = SubResource("BoxMesh_a0tk4")
+surface_material_override/0 = SubResource("StandardMaterial3D_r3fl7")
+
+[node name="XRNode3D Hand Right" type="XRNode3D" parent="XROrigin3D" unique_id=2003846426]
+tracker = &"/user/hand_tracker/right"
+show_when_tracked = true
+
+[node name="MeshInstanceDebug" type="MeshInstance3D" parent="XROrigin3D/XRNode3D Hand Right" unique_id=249361481]
+transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, 0, 0, 0)
+mesh = SubResource("BoxMesh_a0tk4")
+surface_material_override/0 = SubResource("StandardMaterial3D_r3fl7")
+
+[node name="InputXrIsHandTracked" type="Node" parent="XROrigin3D" unique_id=1418016619]
+script = ExtResource("4_105wl")
+
+[node name="Label3D" type="Label3D" parent="." unique_id=659874544]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.43490395, 0.2760002, -0.8457041)
+text = "Salut"
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1358242126]
+
+[connection signal="on_left_hand_tracked" from="XROrigin3D/InputXrIsHandTracked" to="XROrigin3D/XRNode3D Hand Left/MeshInstanceDebug" method="set_visible"]
+[connection signal="on_right_hand_tracked" from="XROrigin3D/InputXrIsHandTracked" to="XROrigin3D/XRNode3D Hand Right/MeshInstanceDebug" method="set_visible"]

@@ -12,8 +12,8 @@ func _process(delta: float) -> void:
 	var left_hand_position :Vector3= InputXrStaticSingleton.get_left_hand_global_position()
 	var right_hand_position :Vector3= InputXrStaticSingleton.get_right_hand_global_position()
 	
-	var left_hand_rotation :Vector3= InputXrStaticSingleton.get_left_hand_global_euler_rotation()
-	var right_hand_rotation :Vector3= InputXrStaticSingleton.get_right_hand_global_euler_rotation()
+	var left_hand_rotation :Vector3= InputXrStaticSingleton.get_left_controller_global_euler_rotation()
+	var right_hand_rotation :Vector3= InputXrStaticSingleton.get_right_controller_global_euler_rotation()
 	
 
 	# frist line left and right position
@@ -56,8 +56,14 @@ func _process(delta: float) -> void:
 	var line_touch_pad:String="Touch Pad Left: " + str(touch_pad_left) + " - " + "Touch Pad Right: " + str(touch_pad_right) + " - " + "Touch Pad Left Touch: " + str(touch_pad_left_touch) + " - " + "Touch Pad Right Touch: " + str(touch_pad_right_touch)
 
 
-	#var string_to_display:String ='\n'.join([line_one, line_two, line_button_abxy])
-	var string_to_display:String ='\n'.join([line_touch_pad])
+	var is_hand_tracked_left = InputXrStaticSingleton.is_left_hand_tracked()
+	var is_hand_tracked_right = InputXrStaticSingleton.is_right_hand_tracked()
+	var line_hand_tracked:String="Is Left Hand Tracked: " + str(is_hand_tracked_left) + " - " + "Is Right Hand Tracked: " + str(is_hand_tracked_right) + ""
+
+
+	# var string_to_display:String ='\n'.join([line_one, line_two, line_button_abxy])
+	# var string_to_display:String ='\n'.join([line_touch_pad])
+	var string_to_display:String ='\n'.join([line_one, line_two, line_button_abxy, line_trigger_grip, line_joystick, line_touch, line_touch_pad, line_hand_tracked])
 	if debug_label:
 		debug_label.text = string_to_display
 	on_debug_text_emitted.emit( string_to_display)
