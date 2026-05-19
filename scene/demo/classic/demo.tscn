@@ -12,6 +12,18 @@
 [ext_resource type="Script" uid="uid://cbtav4ho5qarq" path="res://addons/2026_01_03_gdp_input_to_primitive/script/primitive_to_boolean/input_on_off_from_float.gd" id="10_omud2"]
 [ext_resource type="Script" uid="uid://b3lbd88xej6qj" path="res://addons/2026_01_03_gdp_input_to_primitive/script/map/input_listen_to_map_vector2.gd" id="11_hxu48"]
 [ext_resource type="Script" uid="uid://64krvhjfms6x" path="res://addons/2026_01_03_gdp_input_to_primitive/script/primitive_to_boolean/input_on_off_from_vector_2.gd" id="12_0i0lk"]
+[ext_resource type="Script" uid="uid://dne1wyvd2r3fi" path="res://addons/2026_01_03_gdp_input_to_primitive/script/nfc/input_nfc_listener.gd" id="13_5jr7s"]
+[ext_resource type="Script" uid="uid://b06qwasc88noc" path="res://addons/2026_01_03_gdp_input_to_primitive/script/nfc/input_nfc_text_to_node.gd" id="14_ib63b"]
+[ext_resource type="Script" uid="uid://dxlhra4xb5odf" path="res://addons/2026_01_03_gdp_input_to_primitive/script/nfc/input_nfc_listener_from_xr.gd" id="14_vo6qm"]
+[ext_resource type="Script" uid="uid://ddlc35vdwi6oq" path="res://addons/2026_01_03_gdp_input_to_primitive/script/nfc/input_nfc_text_to_scene.gd" id="15_0i0lk"]
+[ext_resource type="Script" uid="uid://dl1atyi78up5p" path="res://addons/2026_01_03_gdp_input_to_primitive/script/nfc/input_nfc_text_to_text.gd" id="16_vo6qm"]
+[ext_resource type="Script" uid="uid://qgcyi6s13y08" path="res://addons/2026_01_03_gdp_input_to_primitive/script/nfc/input_nfc_text_to_variable.gd" id="17_lvxrx"]
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_ib63b"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_omud2"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_hxu48"]
 
 [node name="Demo" type="Node3D" unique_id=932091873]
 
@@ -85,5 +97,79 @@ radius_threshold = 0.3
 
 [node name="InputXrJoystick" type="Node" parent="ToDo" unique_id=333780080]
 
+[node name="Node3D" type="Node3D" parent="." unique_id=1433604170]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Node3D" unique_id=127196027]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Node3D/StaticBody3D" unique_id=596483281]
+shape = SubResource("WorldBoundaryShape3D_ib63b")
+
+[node name="Node3D2" type="Node3D" parent="." unique_id=964957361]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.1975708, 0)
+
+[node name="RigidBody3D" type="RigidBody3D" parent="Node3D2" unique_id=460204576]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Node3D2/RigidBody3D" unique_id=1596866478]
+shape = SubResource("SphereShape3D_omud2")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Node3D2/RigidBody3D" unique_id=1813336404]
+mesh = SubResource("SphereMesh_hxu48")
+
+[node name="InputNfcListener" type="Node" parent="." unique_id=2115953542]
+script = ExtResource("13_5jr7s")
+metadata/_custom_type_script = "uid://dne1wyvd2r3fi"
+
+[node name="InputNfcListenerRefFromXr" type="Node" parent="InputNfcListener" unique_id=936918817 node_paths=PackedStringArray("nfc")]
+script = ExtResource("14_vo6qm")
+nfc = NodePath("..")
+metadata/_custom_type_script = "uid://dxlhra4xb5odf"
+
+[node name="InputNfcTextToNodeSpawn" type="Node" parent="InputNfcListener" unique_id=2086710029 node_paths=PackedStringArray("text_to_node_dico", "where_to_create_node")]
+script = ExtResource("14_ib63b")
+text_to_node_dico = {
+"123": NodePath("../../Node3D2/RigidBody3D"),
+"24520996": NodePath("../../Node3D2/RigidBody3D"),
+"25043411": NodePath("../../Node3D2/RigidBody3D")
+}
+where_to_create_node = NodePath("../../Node3D2")
+metadata/_custom_type_script = "uid://b06qwasc88noc"
+
+[node name="InputNfcTextToSceneLoadAndDestroy" type="Node" parent="InputNfcListener" unique_id=413303567]
+script = ExtResource("15_0i0lk")
+
+[node name="InputNfcTextToText" type="Node" parent="InputNfcListener" unique_id=1956360772]
+script = ExtResource("16_vo6qm")
+text_to_scene_name_dico = Dictionary[String, String]({
+"123": "Down Pad",
+"25043411": "HelloWorld",
+"456": "Mid Pad",
+"789": "Top Pad"
+})
+
+[node name="InputNfcTextToVariable" type="Node" parent="InputNfcListener" unique_id=1246481429]
+script = ExtResource("17_lvxrx")
+text_to_scene_name_dico = Dictionary[String, Variant]({
+"321": Vector3(0, -1, 0),
+"987": Vector3(0, 1, 0)
+})
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=686332167]
+
+[node name="Label" type="Label" parent="CanvasLayer" unique_id=1988654121]
+anchors_preset = -1
+anchor_right = 0.19000001
+anchor_bottom = 0.108
+offset_right = 0.11997986
+offset_bottom = 0.01599884
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=704911103]
+transform = Transform3D(1, 0, 0, 0, 0.791437, 0.6112508, 0, -0.6112508, 0.791437, 0, 3.6414185, 4.845459)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Camera3D" unique_id=2039177832]
+
 [connection signal="on_float_value_updated" from="InputMap/InputMapAxis" to="InputMap/InputMapAxis/Float On Off" method="push_in"]
 [connection signal="on_float_value_updated" from="InputMap/InputMapVertex" to="InputMap/InputMapVertex/Arrow Event" method="push_in_vector2"]
+[connection signal="on_found_nfc_code" from="InputNfcListener" to="CanvasLayer/Label" method="set_text"]
+[connection signal="on_found_nfc_code" from="InputNfcListener" to="InputNfcListener/InputNfcTextToNodeSpawn" method="try_spawn_node_from_text"]
+[connection signal="on_found_nfc_code" from="InputNfcListener" to="InputNfcListener/InputNfcTextToVariable" method="try_to_emit_store_variable_from_key"]
+[connection signal="on_untyped_variable_found" from="InputNfcListener/InputNfcTextToVariable" to="Node3D2/RigidBody3D" method="set_position"]
