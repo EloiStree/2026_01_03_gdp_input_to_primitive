@@ -169,7 +169,7 @@ transform = Transform3D(1, 0, 0, 0, 0.791437, 0.6112508, 0, -0.6112508, 0.791437
 
 [connection signal="on_float_value_updated" from="InputMap/InputMapAxis" to="InputMap/InputMapAxis/Float On Off" method="push_in"]
 [connection signal="on_float_value_updated" from="InputMap/InputMapVertex" to="InputMap/InputMapVertex/Arrow Event" method="push_in_vector2"]
-[connection signal="on_found_nfc_code" from="InputNfcListener" to="CanvasLayer/Label" method="set_text"]
 [connection signal="on_found_nfc_code" from="InputNfcListener" to="InputNfcListener/InputNfcTextToNodeSpawn" method="try_spawn_node_from_text"]
 [connection signal="on_found_nfc_code" from="InputNfcListener" to="InputNfcListener/InputNfcTextToVariable" method="try_to_emit_store_variable_from_key"]
+[connection signal="on_found_nfc_code" from="InputNfcListener" to="CanvasLayer/Label" method="set_text"]
 [connection signal="on_untyped_variable_found" from="InputNfcListener/InputNfcTextToVariable" to="Node3D2/RigidBody3D" method="set_position"]
