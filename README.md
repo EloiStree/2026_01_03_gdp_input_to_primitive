@@ -17,7 +17,3 @@ They are tool online to test Xbox, Keyboard and other like:
 
 
 
-**Add to a git project:**
-```
-git submodule add https://github.com/EloiStree/2026_01_03_gdp_input_to_primitive.git addons/2026_01_03_gdp_input_to_primitive
-```
