@@ -81,7 +81,6 @@ func save_given_text(text: String) -> void:
 		push_error("Failed to open file for writing: " + path)
 		return
 
-	print("Seelpy test",path)
 	file.store_string(text)
 	
 
