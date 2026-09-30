@@ -237,21 +237,20 @@ func _set_axis_value_for_device(device_index: int, axis_index: int, axis_value: 
 
 	if device == null:
 		return
+	# Round before searching so comparisons use the same precision for existing and new axes.
+	axis_value = round(axis_value * pow(10, _axis_decimal_precision)) / pow(10, _axis_decimal_precision)
 	for axis in device._axis_list:
-		if axis == null:
-			continue
-		if axis.axis_index == axis_index:
-			# Round the axis value to the specified decimal precision
-			axis_value = round(axis_value * pow(10, _axis_decimal_precision)) / pow(10, _axis_decimal_precision)
-			if axis.axis_value != axis_value:	
-				var previous_axis_value := axis.axis_value
-				axis.axis_value = axis_value
-				#print ("VALUE_CHANGED_COUNT: ", device_index, " Axis: ", axis_index, " Previous Value: ", previous_axis_value, " New Value: ", axis_value)
-				if not _emit_every_frame_if_changed_instead_of_on_changed:
-					on_axis_changed.emit(device_index, device._joystick_apparition_index, axis_index, previous_axis_value, axis_value)
-					on_any_event_to_device_reference.emit(device)
-					on_any_event_to_device_and_manager_reference.emit(device, self)
-				return
+		if axis != null:
+			if axis.axis_index == axis_index:
+				if axis.axis_value != axis_value:
+					var previous_axis_value := axis.axis_value
+					axis.axis_value = axis_value
+					#print ("VALUE_CHANGED_COUNT: ", device_index, " Axis: ", axis_index, " Previous Value: ", previous_axis_value, " New Value: ", axis_value)
+					if not _emit_every_frame_if_changed_instead_of_on_changed:
+						on_axis_changed.emit(device_index, device._joystick_apparition_index, axis_index, previous_axis_value, axis_value)
+						on_any_event_to_device_reference.emit(device)
+						on_any_event_to_device_and_manager_reference.emit(device, self)
+					return
 	print("ADD AXIS: ", axis_index, " VALUE: ", axis_value, " FOR DEVICE: ", device_index)
 	var new_axis := DeviceAxis.new()
 	new_axis.linked_device = device
